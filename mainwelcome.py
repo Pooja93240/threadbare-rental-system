@@ -21,7 +21,6 @@ STAFF_PASSWORD = "threadbare2026"
 # --- BACKEND CONNECTION ---
 # --- BACKEND CONNECTION ---
 @st.cache_resource
-@st.cache_resource
 def get_db():
     if "MONGO_URI" in st.secrets:
         mongo_uri = st.secrets["MONGO_URI"]
