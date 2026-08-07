@@ -15,13 +15,17 @@ st.set_page_config(
 # --- BACKEND CONNECTION ---
 @st.cache_resource
 def get_db():
-    # Uses Streamlit Secrets when deployed, or falls back to Atlas/Local URL
     if "MONGO_URI" in st.secrets:
         mongo_uri = st.secrets["MONGO_URI"]
+    elif "MONGO_URI" in os.environ:
+        mongo_uri = os.environ["MONGO_URI"]
     else:
         mongo_uri = "mongodb+srv://Pooja:db_Poojapihu2912@cluster0.z9x64ww.mongodb.net/?retryWrites=true&w=majority"
-    
-    client = MongoClient(mongo_uri)
+
+    # Explicitly pass tls=True along with certifi CA bundle
+    client = MongoClient(
+        mongo_uri, tls=True, tlsCAFile=certifi.where(), serverSelectionTimeoutMS=5000
+    )
     return client["rental_system"]
 db = get_db()
 rentals_col = db["rentals"]      
