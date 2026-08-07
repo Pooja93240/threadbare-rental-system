@@ -1,6 +1,8 @@
+
+import certifi
+import os
 import streamlit as st
 from pymongo import MongoClient
-from bson.objectid import ObjectId
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
@@ -10,11 +12,19 @@ st.set_page_config(
 )
 
 # --- BACKEND CONNECTION ---
-@st.cache_resource
+# --- BACKEND CONNECTION@st.cache_resource
 def get_db():
-    client = MongoClient("mongodb://localhost:27017/")
-    return client["rental_system"]
+    if "MONGO_URI" in st.secrets:
+        mongo_uri = st.secrets["MONGO_URI"]
+    else:
+        mongo_uri = os.getenv(
+            "MONGO_URI",
+            "mongodb+srv://Pooja:db_Poojapihu2912@cluster0.z9x64ww.mongodb.net/?retryWrites=true&w=majority",
+        )
 
+    # Adding tlsCAFile=certifi.where() resolves SSL handshake timeouts on cloud servers
+    client = MongoClient(mongo_uri, tlsCAFile=certifi.where())
+    return client["rental_system"]
 db = get_db()
 inventory_col = db["inventory"]
 

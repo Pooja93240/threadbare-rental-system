@@ -1,8 +1,8 @@
 # Rental module created by Juhi
+import certifi
+import os
 import streamlit as st
 from pymongo import MongoClient
-from bson.objectid import ObjectId
-from datetime import datetime, timedelta
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
@@ -12,11 +12,17 @@ st.set_page_config(
 )
 
 # --- BACKEND CONNECTION ---
+# --- BACKEND CONNECTION ---
 @st.cache_resource
 def get_db():
-    client = MongoClient("mongodb://localhost:27017/")
+    # Uses Streamlit Secrets when deployed, or falls back to Atlas/Local URL
+    if "MONGO_URI" in st.secrets:
+        mongo_uri = st.secrets["MONGO_URI"]
+    else:
+        mongo_uri = "mongodb+srv://Pooja:db_Poojapihu2912@cluster0.z9x64ww.mongodb.net/?retryWrites=true&w=majority"
+    
+    client = MongoClient(mongo_uri)
     return client["rental_system"]
-
 db = get_db()
 rentals_col = db["rentals"]      
 inventory_col = db["inventory"]  
