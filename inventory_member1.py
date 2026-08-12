@@ -1,6 +1,5 @@
 
-import certifi
-import os
+from datetime import datetime
 import streamlit as st
 from pymongo import MongoClient
 
@@ -13,21 +12,17 @@ st.set_page_config(
 
 # --- BACKEND CONNECTION ---
 # --- BACKEND CONNECTION@st.cache_resource
+
+from pymongo import MongoClient
 @st.cache_resource
 def get_db():
-    if "MONGO_URI" in st.secrets:
-        mongo_uri = st.secrets["MONGO_URI"]
-    elif "MONGO_URI" in os.environ:
-        mongo_uri = os.environ["MONGO_URI"]
-    else:
-        mongo_uri = "mongodb+srv://Pooja:db_Poojapihu2912@cluster0.z9x64ww.mongodb.net/?retryWrites=true&w=majority"
+    mongo_uri = "mongodb://localhost:27017"
+    client = MongoClient(mongo_uri)
+    return client["threadbare_db"]
 
-    # Explicitly pass tls=True along with certifi CA bundle
-    client = MongoClient(
-        mongo_uri, tls=True, tlsCAFile=certifi.where(), serverSelectionTimeoutMS=5000
-    )
-    return client["rental_system"]
 db = get_db()
+# You can now reference collections using db, e.g.:
+# inventory_col = db["inventory"]
 inventory_col = db["inventory"]
 
 def apply_custom_css():
