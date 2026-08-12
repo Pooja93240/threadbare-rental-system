@@ -1,9 +1,6 @@
-import certifi
-import os
+from datetime import datetime, timedelta
 import streamlit as st
 from pymongo import MongoClient
-
-
 
 
 # --- PAGE CONFIGURATION ---
@@ -22,18 +19,10 @@ STAFF_PASSWORD = "threadbare2026"
 # --- BACKEND CONNECTION ---
 @st.cache_resource
 def get_db():
-    if "MONGO_URI" in st.secrets:
-        mongo_uri = st.secrets["MONGO_URI"]
-    elif "MONGO_URI" in os.environ:
-        mongo_uri = os.environ["MONGO_URI"]
-    else:
-        mongo_uri = "mongodb+srv://Pooja:db_Poojapihu2912@cluster0.z9x64ww.mongodb.net/?retryWrites=true&w=majority"
-
-    # Explicitly pass tls=True along with certifi CA bundle
-    client = MongoClient(
-        mongo_uri, tls=True, tlsCAFile=certifi.where(), serverSelectionTimeoutMS=5000
-    )
-    return client["rental_system"]
+    # Connects directly to local MongoDB Compass on your computer
+    mongo_uri = "mongodb://localhost:27017"
+    client = MongoClient(mongo_uri)
+    return client["threadbare_db"]
 
 db = get_db()
 inventory_col = db["inventory"]
