@@ -1,11 +1,5 @@
 ## 💻 System Configuration & Technical Specifications
 
-## Hardware & OS Environment
-- **Operating System:** Windows 10/11 / macOS / Linux
-- **Processor:** Dual-Core Intel i3 / AMD Ryzen 3 or higher
-- **RAM:** Minimum 4 GB (8 GB recommended)
-- **Disk Space:** 500 MB minimum for environment and runtime
-
 ## Software & Environment Setup
 - **Programming Language:** Python 3.13
 - **IDE / Text Editor:** Python IDLE
@@ -16,11 +10,14 @@
 - **Version Control:** Git & GitHub (Collaborative Remote Repository)
 
 ## 🛠️ Complete Tech Stack
-**Technology Usage** 
-**Frontend UI** - **Streamlit + CSS3** Custom responsive dashboard, navigation tabs, metrics widgets, and luxury styling 
-**Backend & Logic** - **Python**  Cross-module data fetching, fee calculations, and transaction orchestration 
-**Database** - **MongoDB (NoSQL)** Dynamic BSON document storage across 3 interconnected collections 
-**DB Driver** - **PyMongo** Establishing connection strings, executing queries, updates, and inserts 
+
+| Layer | Technology | Usage |
+| :--- | :--- | :--- |
+| *Frontend UI* | *Streamlit + CSS3* | Custom responsive dashboard, navigation tabs, metrics widgets, and luxury styling |
+| *Backend & Logic* | *Python* | Cross-module data fetching, fee calculations, and transaction orchestration |
+| *Database* | *MongoDB (NoSQL)* | Dynamic BSON document storage across 3 interconnected collections |
+| *DB Driver* | *PyMongo* | Establishing connection strings, executing queries, updates, and inserts |
+
 
 ## 👥 Team Workload Division & Member Contributions
 
