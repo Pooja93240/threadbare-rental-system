@@ -6,7 +6,7 @@
 - **RAM:** Minimum 4 GB (8 GB recommended)
 - **Disk Space:** 500 MB minimum for environment and runtime
 
-### Software & Environment Setup
+## Software & Environment Setup
 - **Programming Language:** Python 3.13
 - **IDE / Text Editor:** Python IDLE
 - **Database Engine:** MongoDB Community Server (for Local) / MongoDB Atlas (Cloud)
