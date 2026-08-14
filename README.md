@@ -1,4 +1,5 @@
 ## 💻 System Configuration & Technical Specifications
+https://github.com/user-attachments/assets/e116edc6-b442-49e2-b317-d21ba779b0ea
 
 ## Software & Environment Setup
 - **Programming Language:** Python 3.13
